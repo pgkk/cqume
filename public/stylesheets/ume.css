@@ -1,0 +1,54 @@
+body{
+font-size:12px;
+margin:0;
+padding:0;
+background:#3d85e7 url(/images/index/bg.jpg) no-repeat center bottom
+}
+#main{
+margin:auto;
+width:970px;
+}
+
+/**** index css start ****/
+#index_nav{padding:0;margin:0 0 0 10px;list-style:none;}
+#index_nav li{float:left;}
+#index_nav #logo{}
+#index_nav #links{margin:35px 0 0 30px;}
+#index_nav #telket{margin:35px 0 0 30px;width:378px;text-align:right;}
+#index_nav #telket a img{border:none}
+
+#index_body{clear:left;margin:0;padding:0;list-style:none;width:970px;}
+#index_body li{float:left;}
+#cinema_list{width:202px;height:541px;background:url(../images/index/bg1.gif)}
+#cinema_body{width:756px;height:541px;background:url(../images/index/bg_center.gif)}
+#cinema_right{width:12px;height:541px;background:url(../images/index/bg_right.gif)}
+
+#cinema_list ul {padding:0;margin:21px 0 0 25px;list-style:none;width:176px;}
+#cinema_list ul li{clear:left;text-align:center;}
+#cinema_list ul li.off{width:177px;height:62px;display:block;background:url(../images/index/button_off.jpg);text-decoration:none;}
+#cinema_list ul li.on{width:177px;height:62px;display:block;background:url(../images/index/button1.gif);text-decoration:none;}
+#cinema_list ul li a h1{font-size:210%;margin:0;color:#fffc12;padding-top:12px;font-family:"�??";font-weight:300;}
+#cinema_list ul li a h4{font-size:75%;margin:0;color:#FFF;font-family:Arial, Helvetica, sans-serif;}
+
+#cinema_body ul{padding:0;margin:21px 0 20px 0;list-style:none;}
+#cinema_body #l{width:3px; background:url(../images/index/middle_l.jpg);height:497px}
+#cinema_body #b{width:740px;background:url(../images/index/middle_b.gif);height:497px;border-right:1px solid #0e71cc;}
+* html #cinema_body #b{width:740px;}
+#cinema_body #r{width:4px;background:url(../images/index/middle_r.gif);height:497px}
+#cinema_body #yinxun{padding:0;margin:0 15px;width:auto;}
+#cinema_body #yinxun #jr{}
+#cinema_body #yinxun #mr{}
+#cinema_body #yinxun #bg{background:url(../images/index/yinxun_bg.jpg);height:41px;width:314px;}
+#cinema_body #bod{clear:both;width:710px;margin:0 15px;background:url(../images/index/table_bg_middle.jpg) repeat-y top left;height:444px;border-bottom:1px solid #0e71cc;text-align:center}
+.a{display:block;border:0;}
+.data_table{width:95%;height:100%;}
+table{font-size:12px;}
+
+table #title td {font-size:12px;color:#fff;}
+td{ font-size:12px; color:#000;}
+.wz td{color:#ccc}
+a{text-decoration:none;}
+.bod{padding:0px;}
+/**** news css start ****/
+/**** news css end ****/
+

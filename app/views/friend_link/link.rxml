@@ -1,0 +1,6 @@
+xml.instruct!
+xml.Link do
+  @friendlinks.each do |link|
+    xml.main(:id => "#{link.id}", :name => "#{link.title}", :url => "#{link.url}")
+  end
+end

@@ -1,0 +1,58 @@
+<%= javascript_include_tag 'jquery-1.4.2.min.js' %>
+<style>
+	
+  .icon{
+    font-size:18px;
+    width:20px;
+    margin-left:10px;
+    cursor: pointer;color:red
+  }
+  
+  
+  
+  </style>
+<% form_for 'voting' do |f|%>
+   <p class="row"><label>名称：</label><%= f.text_field :name, :value => @voting_data && @voting_data[:voting] ? @voting_data[:voting].name : ''%></p>
+   <p class="row"><label>类型：</label>   
+   <%= f.radio_button :cat, 0 , {:checkted => 'checked'}%>单选
+   <%= f.radio_button :cat, 1 %>多选
+   <% counter = 0 %>
+   
+   
+    <div id="voting_options">
+        <% @voting_data[:options].each do |opt| %>
+		<p class="row">
+			<%= opt.value %> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; <%= opt.color %> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<span style="color:red;cursor: pointer;" onclick="del(this, <%= opt.id %>)">删除</span>
+		</p>
+		<% end %>
+		<p class="row">
+		<span id="add-btn" style="color:red;cursor:pointer;">添加</span>
+		</p>
+    </div>
+   <%= submit_tag '保存'%>
+<% end %>
+
+<script type="text/javascript">
+	function del(e, id) {
+		var ele = $(e);
+		if (confirm("你确定要删除？")) {
+			$.ajax({url: '/votingadmin/ajax_del_opt/' + id , success: function() {
+				ele.parent().remove();
+				alert('删除成功。');
+			}})
+		}
+	}
+	
+			$(function() {
+				var fields_counter = <%= @counter %>
+				jQuery('#add-btn').bind('click', function() {
+				fields_counter++;
+				var input_tag_id = 'value_' + fields_counter;
+				var input_tag_name = 'voting[option[value_' + fields_counter + ']]';
+                var input_tag_color = 'voting[option[color_' + fields_counter + ']]';
+				var build_input_tag = '<p class="row">选项：<input type="text" id="' + input_tag_id + '" name="' + input_tag_name +  '"  />&nbsp;&nbsp;颜色：<input type=\"text\" name="' + input_tag_color + '" /><b onclick=\"$(this).parent().remove()\" title=删除本项  class=icon>-</b></p>';
+					jQuery(this).parent().before(build_input_tag);
+				});
+				
+			});
+		</script>

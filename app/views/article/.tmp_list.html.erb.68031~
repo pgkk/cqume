@@ -1,0 +1,24 @@
+<p style="margin-left: 15px"> <%=link_to "发布新闻" ,:controller=>"article",:action=>"post"%></p>
+<div style="text-align:center;"><%=flash[:msg]%></div>
+<table width="98%" class="list" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="#83c8ff">
+	<tr class="wz"><th height="34" align="center" bgcolor="#052f55">标题</th>
+	<th height="34" align="center" bgcolor="#052f55">作者</th>
+	<th height="34" align="center" bgcolor="#052f55">菜单编号</th>
+	<th height="34" align="center" bgcolor="#052f55">发布时间</th>
+	<th height="34" align="center" bgcolor="#052f55">操作</th></tr>
+	<%for tmp in @list%>
+	<tr>
+		<td  align="center" bgcolor="#CBE6FF" height="30"><%=link_to (h tmp.title),tmp.url,:target=>"_blank"%></td>
+		<td  align="center" bgcolor="#CBE6FF"><%=h tmp.author%></td>
+		<td  align="center" bgcolor="#CBE6FF"><%=h tmp.type.name%></td>
+		<td  align="center" bgcolor="#CBE6FF"><%=h tmp.created_at%></td>
+		<td  align="center" bgcolor="#CBE6FF">
+			<%=link_to "修改",:controller=>"article",:action=>"edit",:id=>tmp %> | 
+			<%=link_to "删除",{:controller=>"article",:action=>"delete",:id=>tmp},:confirm=>"确定删除？",:method=>"post"%>
+		</td>
+		</tr>
+	<%end%>
+                <tr>
+        <td height="30" align="center" bgcolor="#a4cef4" colspan="5"><%= will_paginate @list%> </td>
+      </tr>
+</table>

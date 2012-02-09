@@ -1,0 +1,45 @@
+
+<p  style="margin-left:10px"><%= link_to "添加影片", :action => 'add' %></p>
+  <% if flash[:success]  %>
+<p class="flash-message-success">
+<div align="center"><%= flash[:success] %></div>
+  </p>
+  <% end  %>
+
+  <% if flash[:update_success_message] %>
+  <p class="flash-message-success">
+    <%= flash[:update_success_message] %>
+  </p>
+  <% end %>
+<table width="98%" class="list" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="#83c8ff" style="text-align:center">
+  <tr class="wz" bgcolor="#052f55">
+    <td height="40">名称</td><td>导演</td><td>主演</td><td>上映时间</td><td>类型</td><td>操作</td></tr>
+  <% @films.each do |film|  %>
+  <tr bgcolor="#CBE6FF">
+    <td>
+<%= image_tag "/images/static-data_/#{film.img}", :size => '90x90' %>
+      <br />
+	  <%= film.name %>
+  </td>
+    
+    <td><%= film.director %> </td>
+	<td><%= film.actors %></td>
+    <td><%= film.released_date.strftime('%Y-%m-%d') %> </td>
+    <td><%= film.category %> </td>
+  
+    <td style="width:15%">
+
+      <%= link_to "删除", { :action => 'delete', :id => film }, {:confirm => '你是否确定要删除？'} %>
+      &nbsp;&nbsp;
+      <%= link_to "修改", :action => 'edit', :id => film %>
+	  &nbsp;&nbsp;
+	  <span id="status" style="cursor: pointer;">
+	  <%# film.status ? "下线" : "上线"%>
+	  </span>
+	   </td></tr>
+  <% end %>
+   <tr>
+        <td height="30" align="center" bgcolor="#a4cef4" colspan="7"><%=will_paginate @films%></td>
+      </tr>
+</table>
+

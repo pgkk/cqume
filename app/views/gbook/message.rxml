@@ -1,0 +1,17 @@
+xml.instruct!
+xml.Message(:name=>'看片花',:url=>'/classes/list/17') do
+  xml.Part(:name=>'留言板') do
+    @gbooks.each do |g|
+      xml.Main(:id => "#{g.id}", :name => "#{g.name.from(8)}", :url => "/gbook/show/#{g.id}")
+    end
+  end
+  xml.Part(:name=>'在线调查') do
+    xml.Main(:id=>'1',:name=>'在线调查',:url=>'/voting')
+  end
+  xml.Part(:name=>'English') do
+    xml.Main(:id=>'1',:name=>'English',:url=>'http://www.bjume.com/pre/eprice.dll')
+  end
+  xml.Part(:name=>'回首页') do
+    xml.Main(:id=>'1',:name=>'回首页',:url=>'/')
+  end
+end

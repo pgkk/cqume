@@ -1,0 +1,44 @@
+<p align="center"><%=h flash[:message_flash]%></p>
+
+<div class="nav">
+<b><%=@cinema.name%>当前影讯</b>
+[<%=link_to '发布影讯', :controller => 'message', :action => 'add', :id => params[:id] %>]
+[<%=link_to "管理留言", :controller => 'comments', :id => params[:id] %>]
+[<%=link_to "今日影讯", :controller => 'message', :action => 'today', :id => params[:id] %>]
+[<%=link_to "明日影讯", :controller => 'message', :action => 'tomorow', :id => params[:id] %>]
+</div>
+
+<table width="98%" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="#83c8ff">
+      <tr class="wz">
+        <td width="19%" height="34" align="center" bgcolor="#052f55">片名</td>
+        <td width="9%" align="center" bgcolor="#052f55">国家</td>
+        <td width="17%" align="center" bgcolor="#052f55">类型</td>
+  
+        <td width="8%" align="center" bgcolor="#052f55">放映厅</td>
+        <td width="9%" align="center" bgcolor="#052f55">票价</td>
+        <td width="10%" align="center" bgcolor="#052f55">时间</td>
+        <td width="11%" align="center" bgcolor="#052f55">备注</td>
+        <td align="center" bgcolor="#052f55">操作</td>
+      </tr>
+      <% for m in @message %>
+      <tr>
+        <td height="30" align="center" bgcolor="#CBE6FF"><%= h(m.film_name)%></td>
+        <td align="center" bgcolor="#CBE6FF"><%= h(m.country)%></td>
+        <td align="center" bgcolor="#CBE6FF"><%= h(m.film_type)%></td>
+      
+        <td align="center" bgcolor="#CBE6FF"><%= h(m.room)%></td>
+        <td align="center" bgcolor="#CBE6FF"><%= h(get_price(m.price,m.service_price))%></td>
+        <td align="center" bgcolor="#CBE6FF"><%= h("#{m.stime.to_s.from(5).to(10)}")%></td>
+        <td align="center" bgcolor="#CBE6FF"><%= h(m.note)%></td>
+        <td align="center" bgcolor="#CBE6FF">
+          <%=link_to '删除',{:action => "del", :id => m, :cid => @cinema},
+                      :confirm => '真的要删除吗?',:method=>:post %>
+          <%=link_to '修改',{:action => 'edit', :id => m, :cid => @cinema} %>
+        </td>
+      </tr>
+      <% end %>
+      <td height="30" align="center" bgcolor="#a4cef4" colspan="9"><%=will_paginate @message%></td>
+    </table>
+    <% if @message.length==0 %>
+    <h4 align="center">没有任何影讯</h4>
+    <% end %>

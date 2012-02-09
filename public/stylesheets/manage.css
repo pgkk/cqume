@@ -1,0 +1,146 @@
+@charset "utf-8";
+
+body {
+	background: url(/images/top-bg.jpg) repeat-x;
+}
+
+.wz {
+	font-size:12px;
+	color: #FFF;
+}
+a{color: #004d91;text-decoration: none;}
+a:hover{text-decoration:underline;}
+
+a.menu:link {
+	font-size: 14px;
+	color: #004d91;
+	font-weight:bold;
+	text-decoration: none;
+}
+a.menu:visited {
+	font-size: 14px;
+	color: #004d91;
+	font-weight:bold;
+	text-decoration: none;
+}
+a.menu:hover {
+	font-size: 14px;
+	color: #FF0000;
+	font-weight:bold;
+	text-decoration: none;
+}
+a.menu:active {
+	font-size: 14px;
+	color: #004d91;
+	font-weight:bold;
+	text-decoration: none;
+}
+/**/
+.bg{background-color:#CBE6FF;height:30px;margin-left:10px;}
+.nav{padding:10px;}
+
+
+form {
+    margin-left: 30px;
+    width: 95%;
+    
+    margin: 0 auto;
+    border: 1px solid #83c8ff;
+}
+
+.row {
+    
+    clear: both;
+    
+    background:#CBE6FF;
+    padding: 8px 0;
+    margin: 0;
+    border-bottom: 1px solid #83c8ff;
+    display: block;   
+}
+
+form input {
+    padding: 5px 0;
+}
+
+form label {
+    width: 130px;
+    text-align: left;
+padding: 4px 0 0 10px;
+   
+   
+    float: left;
+    
+}
+.input-box {
+    border: 1px #ccc solid;
+        padding: 4px 2px;
+    }
+
+.link-bar {
+    padding-left: 30px; 
+}
+
+
+.btn {
+    cursor: pointer;
+}
+
+.list {
+    border-collapse: collapse;
+}
+.list td {
+    border-bottom: 1px solid #6699cc;
+    padding: 3px 5px;
+}
+
+.list td {
+
+}
+
+.flash-message-success {
+   
+    padding: 10px 0;
+    width: 90%;
+    margin-left: 2%;
+}
+
+.flash{
+    padding:30px;
+    width:100%
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+}
+
+.error {
+    color: #ff0000;
+}
+
+.helper{
+    padding:0;
+    margin:8px 10px;
+    border-bottom:1px solid #e3e3e3;
+}
+
+#helper_body{
+    padding:0;
+    margin:8px 10px;
+}
+#helper_body font{margin-right:10px;padding:5px;}
+.today{color:#fff;font-weight:bold;background-color:#458249;}
+.tomorow{color:#fff;font-weight:bold;background-color:#88A982;}
+.yesterday{color:#aaa;font-weight:bold}

@@ -1,0 +1,17 @@
+<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+<%=error_messages_for "article" %>
+<%form_for :article,:url=>{:action=>"post"} do |f|%>
+<table>
+<tr><td>标题</td><td><%=f.text_field "title" %></td></tr>
+<tr><td>分类</td><td> <%=f.select "type_id", options_from_collection_for_select(@type, "id", "name")%> </td></tr>
+<tr><td>内容</td><td><%=f.text_area "content",:id=>"content" %></td></tr>
+<tr><td colspan="2"><%=submit_tag "发布" %></td></tr>
+</table>
+<%end%>
+
+<script type="text/javascript">  
+        CKEDITOR.replace('content',{
+			filebrowserUploadUrl : '/file_manage/uploadImage?Type=File',
+			filebrowserImageUploadUrl : '/file_manage/uploadImage?Type=Image',  
+        });  
+</script>

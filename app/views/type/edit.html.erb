@@ -1,0 +1,14 @@
+<%form_for :type,:url=>{:action=>"edit"} do |f|%>
+添加分类
+<table  width="98%" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="#83c8ff">
+	<tr><td  class="bg">编号</td><td  class="bg">	<%=f.text_field "code",:readony=>"readony"%> </td></tr>
+	<tr><td  class="bg">名称</td><td  class="bg">	<%= f.text_field "name" %> </td></tr>
+	<tr><td  class="bg">是否是菜单</td><td  class="bg">
+		<%= f.radio_button "isMenu","1" %>是
+		<%= f.radio_button "isMenu","0" %>否
+	</td></tr>
+	<tr><td  class="bg">url</td><td  class="bg">	<%= f.text_field "url" %> </td></tr>
+	<tr><td  class="bg">说明</td><td  class="bg">	<%= f.text_area "info" %> </td></tr>
+	<tr><td colspan="2"> <%=submit_tag "保存" %> </td></tr>
+</table>
+<%end%>

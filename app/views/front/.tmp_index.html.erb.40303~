@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UME重庆</title>
+<%=stylesheet_link_tag "ume.css"%>
+<%=javascript_include_tag "prototype-1.6.1.js"%>
+</head>
+
+<body>
+<div id="main">
+
+<ul id="index_nav">
+	<li id="logo"><img src="images/index/logo.gif" alt="UME重庆"/></li>
+	<li id="links"><a href="#"><img src="images/index/button_news.gif" alt="UME重庆" border="0"/></a><a href="#"><img src="images/index/button_index.gif" alt="UME重庆" border="0"/></a></li>
+	<li id="telket">
+	<a href="http://preorder.bjume.com" title="会员购票"><img src="images/index/telket_03.jpg" alt="UME会员服务"/></a><a href="http://www.wangpiao.com/" title="网票网购票"><img src="images/index/telket_04.jpg" alt="UME网票网服务"/></a></li>
+</ul>
+
+<ul id="index_body">
+	<li id="cinema_list">
+		<ul>
+			<%for c in @cinema%>
+			<li><a href="javascript:view(<%=c.id%>)"><h1><%=c.name%></h1><h4>WELCOME TO UME</h4></a></li>
+			<%end%>
+		</ul>
+	</li>
+	<li id="cinema_body">
+		<ul>
+			<li id="l"></li>
+			<li id="b">
+				<ul id="yinxun">
+					<li id="jr"><a href="#" class="a"><img src="images/index/yinxun_tod_on.jpg" border="0" alt="今日影讯"/></a></li>
+					<li id="mr"><a href="#" class="a"><img src="images/index/yinxun_tom_off.jpg" border="0" alt="明日影讯"/></a></li>
+					<li id="bg"></li>
+				</ul>
+				<div id="bod">
+
+				<table width="100%" border="0" cellspacing="1" cellpadding="1" bgcolor="#83c8ff" id="tomorow" style="display:block">
+			      <tr class="wz">
+			        <td width="19%" height="34" align="center" bgcolor="#052f55">片名</td>
+			        <td width="9%" align="center" bgcolor="#052f55">国家</td>
+			        <td width="17%" align="center" bgcolor="#052f55">类型</td>
+			        <td width="7%" align="center" bgcolor="#052f55">片长(分)</td>
+			        <td width="8%" align="center" bgcolor="#052f55">时间</td>
+			        <td width="9%" align="center" bgcolor="#052f55">影城</td>
+			        <td width="10%" align="center" bgcolor="#052f55">放映厅</td>
+			        <td width="10%" align="center" bgcolor="#052f55">票价</td>
+			        <td width="11%" align="center" bgcolor="#052f55">备注</td>
+			      </tr>
+				  	
+					<%for tmp2 in @tomorow%>
+				  	<tr>
+				  	<td height="30" align="center" bgcolor="#CBE6FF"><%=h tmp2.film_name %></td>
+			        <td align="center" bgcolor="#CBE6FF"><%=h tmp2.country %></td>
+			        <td align="center" bgcolor="#CBE6FF"><%=h tmp2.film_type %></td>
+			        <td align="center" bgcolor="#CBE6FF"><%=h tmp2.film_length %></td>
+			        <td align="center" bgcolor="#CBE6FF"><%=h tmp2.stime.to_s.from(11).to(4) %></td>
+			        <td align="center" bgcolor="#CBE6FF"><%=h tmp2.cinema.name %></td>
+			        <td align="center" bgcolor="#CBE6FF"><%=h tmp2.room %></td>
+			        <td align="center" bgcolor="#CBE6FF">¥<%=h tmp2.price %></td>
+			        <td align="center" bgcolor="#CBE6FF"><%=h tmp2.note %></td>
+					</tr>
+				  <%end%>
+			    </table>
+				
+				</div>
+			</li>
+			<li id="r"></li>
+		</ul>
+	</li>
+	<li id="cinema_right"></li>
+</ul>
+</div>
+
+<script>
+function view(num){
+		new Ajax.Request("/front/"+num,{
+		method:'get',
+		asynchronous:true,
+		onComplete:function(obj){
+			$('bod').innerHTML=obj.responseText;
+		}
+	});
+	}
+</script>
+
+</body>
+</html>

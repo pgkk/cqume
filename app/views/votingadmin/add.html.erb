@@ -1,0 +1,49 @@
+<%= javascript_include_tag 'jquery-1.4.2.min.js' %>
+<style>
+  
+  .icon{
+    font-size:18px;
+    width:20px;
+    margin-left:10px;
+    cursor: pointer;color:red
+  }
+  
+</style>
+
+<h3 style="display:block;width:95%;margin: 0 auto;margin-bottom: 10px;">添加投票</h3>
+<% if flash[:success_msg] %>
+<p><%= flash[:success_msg] %></p>
+<% end %>
+<% form_for :voting_data do |form|  %>
+<p class="row">
+  <label for="name">投票主题：</label>
+  <%= form.text_field :name %>
+</p>
+<p class="row">
+  <label for="cat">投票类型：</label>
+  <%= form.radio_button :cat, 0, :checked => 'checkted'%>单选
+  <%= form.radio_button :cat, 1 %>多选&nbsp;&nbsp;&nbsp;&nbsp;
+  <span style="color:#FF0000">默认为单选</span>
+</p>
+<div id="voting_options">
+  <p class="row">
+    <span class="item">值：<input type="text" name="voting_data[options[[value_0]]" />&nbsp;&nbsp;颜色：<input type="text" name="voting_data[options[[color_0]]" /><b id="add-btn" title="添加调查项" class="icon">+</b></span>
+  </p>
+</div>
+<p class="row">
+  <%= submit_tag "提交" %>
+</p>
+<% end  %>
+<script type="text/javascript">
+			$(function() {
+				var fields_counter = 1;
+				$('#add-btn').bind('click', function() {
+				fields_counter ++;
+				var input_tag_id = 'value_' + fields_counter;
+				var input_tag_name = 'voting_data[options[[value_' + fields_counter + ']]';
+                var input_tag_color = 'voting_data[options[[color_' + fields_counter + ']]';
+				var build_input_tag = '<p class="item">值：<input type="text" id="' + input_tag_id + '" name="' + input_tag_name +  '"  />&nbsp;&nbsp;颜色：<input type=\"text\" name="' + input_tag_color + '" /><b onclick=\"$(this).parent().remove()\" title=删除本项  class=icon>-</b></p>'
+					$(this).parent().before(build_input_tag);
+				});
+			});
+		</script>

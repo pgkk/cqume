@@ -1,0 +1,16 @@
+<%=error_messages_for "cinema" %>
+
+<% form_for(:cinema,:url=>{:action=>"edit"}) do  |f|%>
+<table width="98%" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="#83c8ff">
+<tr><td class="bg">名称</td><td class="bg"><%=f.text_field "name"%> </td></tr>	
+<tr><td class="bg">地址</td><td class="bg"> <%=f.text_field "address"%> </td></tr>	
+<tr><td class="bg">放映厅数(个)</td><td class="bg"> <%=f.text_field "hall"%> </td></tr>	
+<tr><td class="bg">情侣放映厅数(个)</td><td class="bg"> <%=f.text_field "loverhall"%> </td></tr>	
+<tr><td class="bg">VIP放映厅数(个)</td><td class="bg"> <%=f.text_field "viphall"%> </td></tr>	
+<tr><td class="bg">imax放映厅数(个)</td><td class="bg"> <%=f.text_field "imaxhall"%> </td></tr>	
+<tr><td class="bg">联系电话</td><td class="bg"> <%=f.text_field "phone"%> </td></tr>	
+<tr><td class="bg">说明</td><td class="bg"> <%=f.text_area "info"%> </td></tr>	
+<tr><td colspan="2"> <%=submit_tag "修改"%> <%=button_to("返回",:url=>{:action=>"index"})%> </td></tr>	
+</table>
+
+<% end%>

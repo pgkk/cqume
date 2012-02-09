@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>你要访问的页面不存在</title>
+
+<style type="text/css">
+<!--
+body {
+	background-attachment: fixed;
+	background-image: url(../images/error/bg.jpg);
+	font-size:12px;
+}
+
+h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+
+#info{
+margin:100px auto;
+}
+
+#l_b,#r_b,#m_b{
+	margin: 0px;
+	padding: 0px;
+	height: 178px;
+}
+
+#l_b {
+	background-image: url(../images/error/bg_left.png);
+	background-repeat: no-repeat;
+	width: 15px;
+}
+
+#r_b {
+	background-image: url(../images/error/bg_right.png);
+	background-repeat: no-repeat;
+	width: 15px;
+}
+
+#m_b {
+	background-image:url(../images/error/bg_center.png);
+	background-repeat:repeat-x;
+	overflow:auto;
+}
+
+-->
+</style>
+</head>
+
+<body>
+<table id="info" cellspacing="0">
+<tr><td id="l_b"></td>
+<td id="m_b">
+    <h1>你要访问的页面不存在</h1>
+    <p>你是不是在我们的世界迷路了？<a href="/">跟随我带你离开这...</a>...</p>
+</td>
+<td id="r_b"></td></tr>
+</table>
+<div>
+
+</div>
+
+</body>
+</html>
+
+

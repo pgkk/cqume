@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新闻查看</title>
+<%=stylesheet_link_tag "article_template1"%>
+</head>
+<body>
+<div id="bg">
+<div class="frame">
+<div id="head">
+  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="1040" height="200">
+    <param name="movie" value="images/infoNavi.swf" />
+    <param name="quality" value="high" />
+    <embed src="/images/articles/infoNavi.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="1040" height="200"></embed>
+  </object>
+</div>
+<div id="center">
+  <table>
+    <tr>
+      <td id="menu" rowspan="2">
+      	<ul style="list-style:none">
+		<%for tmp in @types%>
+			<li style="margin-bottom:15px;">
+			<%=
+				link_to_if  tmp.url.blank?,tmp.name,:controller=>"classes",:action=>"list",:id=>tmp do
+					link_to tmp.name,tmp.url
+				end
+			%></li>
+		<%end%>
+		</ul>
+		</td>
+      <td id="line"></td>
+      <td rowspan="2" id="main">
+      	<span class="navigate">
+      		<%=@types[0].name%> &gt; 
+			<%=link_to @article.type.name,:controller=>"classes",:action=>"list",:id=>@article.type%> &gt; 
+			<%=link_to @article.title,@article.url%>
+			 &gt; 正文</span>
+		 <span class="title"><%=h @article.title%></span>
+ 			<span class="info">作者：<%=h @article.author%> ｜ 发布时间 ：<%=Time.now.to_s(:db)%></span>
+			<%=@article.content%>
+	 </td>
+    </tr>
+    <tr>
+      <td id="line2"></td>
+    </tr>
+  </table>
+</div>
+<!--<div id="navigate"></div>-->
+<div id="footer"></div>
+</div>
+</div>
+<script>
+	var a=document.getElementById("menu");
+	var n=a.children[0].children[0];
+	var t=n.children[0];
+	n.innerHTML=t.firstChild.nodeValue;
+	n.className="menu_head";
+	n.style.fontSize="20px";
+</script>
+</body>
+</html>

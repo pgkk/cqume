@@ -1,0 +1,32 @@
+
+<p style="margin-left: 52px">
+  <%= link_to "添加连接" , :action => 'add'%>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <% if flash[:message]  %>
+  <span><%= flash[:message] %> </span>
+  <% end %>
+</p>
+<table width="90%"  class="list" align="center" border="0" cellpadding="1" cellspacing="1" bgcolor="#83c8ff">
+      <tr class="wz">
+
+        <td width="11%" height="35px" align="center" bgcolor="#052f55">标题</td>
+        <td align="center" bgcolor="#052f55">地址</td>
+        <td align ="center" bgcolor ="#052f55">操作</td>
+      </tr>
+      <% for friend_link in @friend_links %>
+      <tr>
+        <td height="30" align="center" bgcolor="#CBE6FF"><%= h(friend_link.title)%></td>
+     
+        <td align="center" bgcolor="#CBE6FF"><%= h(friend_link.url)%></td>
+        <td align="center" bgcolor="#CBE6FF">
+          <%=link_to '删除',{:action => "remove", :id => friend_link},
+                      :confirm => '真的要删除吗?',:method=>:post %>
+          <%=link_to '修改',{:action => 'edit', :id => friend_link} %>
+        </td>
+      </tr>
+      <% end %>
+      <tr>
+        <td height="30" align="center" bgcolor="#a4cef4">&nbsp;</td>
+        <td align="center" bgcolor="#a4cef4">&nbsp;</td> <td align="center" bgcolor="#a4cef4">&nbsp;</td>
+      </tr>
+    </table>

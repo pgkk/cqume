@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	margin: 0; 
+	padding: 0;
+}
+
+html, body{
+	font-size: 12px; 
+	font-family: Verdana, 宋体; 
+	color: #0000;
+}
+.page {
+	width:577px;
+	height:236px;
+	margin:0 auto;
+	margin-top:120px;
+}
+.page .title{
+	background:url(../images/bg_title.gif) no-repeat;
+	width:577px;
+	height:48px;
+}
+.page .main{
+	background:url(../images/bg_main.gif) no-repeat; 
+	width:577px; 
+	height:188px;
+}
+.page .main .account{
+	padding-top:45px; 
+	padding-left:210px;
+}
+.page .main .password{
+	padding-top:15px; 
+	padding-left:210px;
+}
+.page .main .account input,.page .main .password input{
+	border:1px solid #14698D;
+	width:200px;
+}
+.page .main .btn{
+	margin-left:320px; 
+	margin-top:10px;
+}
+

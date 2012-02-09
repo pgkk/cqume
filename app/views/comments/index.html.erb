@@ -1,0 +1,65 @@
+<div class="nav"><b>留言管理</b></div>
+<b align="center" class="flash"><%=flash[:notice]%></b>
+<table width="98%" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="#83c8ff" class="list">
+      <tr class="wz">
+        <td width="18%" height="34" align="center" bgcolor="#052f55">留言标题</td>
+        <td width="38%" align="center" bgcolor="#052f55">留言内容</td>
+        <td width="10%" align="center" bgcolor="#052f55">IP地址</td>
+        <td width="8%" align="center" bgcolor="#052f55">是否回复</td>
+        <td width="15%" align="center" bgcolor="#052f55">留言时间</td>
+        <td width="14%" align="center" bgcolor="#052f55">操作</td>
+      </tr>
+      <% @comments.each do |comment| %>
+      <tr id="comment_box_<%=comment.id%>">
+        <td height="35px" align="center" bgcolor="#CBE6FF"><%=h comment.title %></td>
+        <td align="center" bgcolor="#CBE6FF"><%=h comment.content %></td>
+        <td align="center" bgcolor="#CBE6FF"><%=h comment.ipaddress %></td>
+        <td align="center" bgcolor="#CBE6FF">
+
+          
+        <div>
+        <% if comment.isreplay %>
+        <%=link_to_remote '察看回复',
+          :before => "Element.show('areplay_box_#{comment.id}')",
+          :url => {:action => 'get_replay', :id => comment.orderid},:update => "replay_content_#{comment.id}" %>
+        <% else %>
+        <%= link_to_function '回复',"Element.show('replay_box_#{comment.id}')" %>
+        <% end %>
+        </div>
+
+
+        </td>
+        <td align="center" bgcolor="#CBE6FF"><%=h comment.created_at.to_s(:db) %></td>
+        <td align="center" bgcolor="#CBE6FF">
+          <%#= link_to '删除', "/comments/destroy/#{comment.id}", :confirm => 'Are you sure?' %>
+          <%= link_to_remote '删除',
+            :url => {:action => 'del',:id => comment.id},
+            :complete => "Element.remove(comment_box_#{comment.id})",
+            :confirm => 'Are you sure?' 
+          %>
+        </td>
+      </tr>
+      <tr id="<%="replay_box_#{comment.id}"%>" style="border:1px solid #ccc;padding:30px;display:none;">
+        <td height="40px" colspan="5" style="padding:8px">
+          
+  
+          <% form_remote_tag :url => {
+            :action => 'replay'} ,
+            :complete => "document.location.reload()" do -%>
+          <textarea name="comment[content]" cols="60" rows="5"></textarea>
+          <input name="oid" type="hidden" value="<%=comment.id%>"/>
+          <input type="submit" value="立即回复" />
+          <% end -%>
+
+
+        </td>
+        <td><%=link_to_function("关闭","Element.hide('replay_box_#{comment.id}')")%></td>
+      </tr>
+      <tr id="<%="areplay_box_#{comment.id}"%>" style="border:1px solid #ccc;padding:30px;display:none;">
+        <td id="replay_content_<%=comment.id%>" colspan="5" height="40px" style="padding-left:20px">
+          正在加载...</td>
+        <td><%=link_to_function("关闭","Element.hide('areplay_box_#{comment.id}')")%></td>
+      </tr>
+      <% end %>
+    </table>
+<% if @comments.blank? %><p align="center">没有任何留言</p><% end %>

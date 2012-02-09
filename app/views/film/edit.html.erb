@@ -1,0 +1,81 @@
+<% if !@error_msg.nil? %>
+<p  class="error error-block">
+  <%= @error_msg %>
+</p>
+<% else  %>
+
+<% form_for("film_data", :html => {:multipart => true, :class=>'form'}) do |form|  %>
+<p class="row"><label>影片名称：</label><%= form.text_field :name, :value => @film.name ,:class=>"input-box" %>
+  <span class="error"><%= @errors[:name] if @errors[:name] %> </span>
+</p>
+
+<p class="row"><label>导演：</label><%= form.text_field :director, :value => @film.director , :class=>"input-box"%>
+  <span class="error">
+    <%= @errors[:director] if @errors[:director]%>
+  </span>
+</p>
+<p class="row"><label>主演：</label><%= form.text_area :actors, :value => @film.actors.split, :class=>"input-box", :size => '45x5' %>
+  <span class="error">
+    <%= @errors[:actors] if @errors[:actors] %>
+  </span>
+</p>
+<p class="row"><label>国家/地区：</label><%= form.text_field :country , :value => @film.country, :class=>"input-box" %>
+  <span class="error">
+    <%= @errors[:country] if @errors[:country] %>
+  </span>
+</p>
+<p class="row"><label>备注：</label><%= form.text_area :description, :value => @film.description , :class=>"input-box", :size=>"45x5"%>
+  <span class="error">
+    <%= @errors[:description] if @errors[:description] %>
+  </span>
+</p>
+<p class="row">
+  <label style="height: 100px">类别：</label>
+  
+  <%
+  counter = 1
+['剧情','喜剧','动作','爱情','惊悚',
+'短片',
+'纪录片',
+'犯罪',
+'恐怖',
+'冒险',
+'悬疑',
+'动画',
+'家庭',
+'战争',
+'奇幻',
+'科幻',
+'歌舞',
+'西部',
+'音乐',
+'传记',
+'历史',
+'运动',
+'史诗',
+'古装',
+'武侠',
+'戏曲',
+'儿童'].each do |cat|  %>
+  <%= cat %><%= check_box_tag "categories[]", cat, !@categories.index(cat).nil? %><%= '<br />' if counter > 0 && counter % 6 == 0  %>
+  <% counter += 1
+end %>
+  <span class="error">
+
+  </span>
+</p>
+
+<p class="row"><label>上映时间：</label><%=form.date_select :released_date, :use_month_names => %w(1 2 3 4 5 6 7 8 9 10 11 12) %>
+<%= @errors[:releated_date] if @errors[:released_date] %>
+</p>
+
+
+<p class="row"><label>片长：</label><%=form.text_field :duration, :value => @film.duration %>
+<%= @errors[:duration] if @errors[:duration] %>
+</p>
+
+<p class="row">
+  <%= submit_tag "保存修改" %>
+</p>
+<% end  %>
+<% end %>

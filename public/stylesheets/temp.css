@@ -1,0 +1,31 @@
+@charset "utf8";
+body {
+	margin: 0px;
+	padding: 0px;
+	background:url(/images/temp/bg.jpg) no-repeat top fixed;
+	font-size:12px;
+}
+.wz {
+	color: #FFF;
+}
+
+img{border:0px;}
+#news{
+    padding:50px;
+    margin:0;
+    color:#fff;
+}
+#news li{
+    line-height:40px;
+    font-size:130%;
+    color:white;
+}
+#news li a{
+    color:#fff
+}
+#news li a:hover{
+    color:#6699cc;
+}
+#news a{
+    color:#000;
+}

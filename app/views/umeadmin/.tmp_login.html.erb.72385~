@@ -1,0 +1,8 @@
+<h2>请登录</h2>
+<h4><%=flash[:login_flash]%></h4>
+<% form_tag :action => 'loginok' do %>
+<p><label>登录账户：</label><%=text_field_tag 'username' %></p>
+<p><label>登录密码：</label><%=password_field_tag 'password' %></p>
+<%=hidden_field_tag 'return_url', @return_url %>
+<%=submit_tag '登录管理中心'%>
+<% end %>

@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UME管理中心</title>
+
+<%= stylesheet_link_tag 'main', 'manage' %>
+<%= javascript_include_tag 'prototype-1.6.1' %>
+<%= javascript_include_tag 'ajax' %>
+<!--
+<link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/manage.css" rel="stylesheet" type="text/css" />
+-->
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="620"><img src="/images/manager/ht_01.jpg" width="620" height="92"/></td>
+        <td style="background:url(/images/manager/ht_02.jpg) no-repeat center right">&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="38" colspan="2" align="right" valign="middle" background="/images/manager/ht_03.jpg"><img src="/images/manager/ht_05.jpg" width="112" height="38" />&nbsp;
+      <a href="/umeadmin/out"><img src="/images/manager/ht_06.jpg" width="112" height="38" border="0"/></a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" background="/images/manager/ht_10.jpg"><table width="253" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><img src="/images/manager/ht_08.jpg" width="253" height="79" /></td>
+      </tr>
+      <tr>
+        <td height="400" align="center" valign="top"><br />
+          <table width="160" border="0" cellspacing="0" cellpadding="0">
+          	<tr>
+            <td width="25" style="vertical-align:top"><img src="/images/manager/close.gif" width="11" height="11"/></td>
+            <td width="135" height="26" align="left">
+            <%= link_to "影院管理", {:controller => :cinema, :action => "index"},{:class=>'menu'} %>
+				<div id="cinemaWaepper">
+				</div>
+			</td>
+          </tr>
+		  
+          <tr>
+            <td width="25"><img src="/images/manager/close.gif" width="11" height="11" /></td>
+            <td width="135" height="26" align="left">
+            <%= link_to "影片管理", {:controller => 'film', :action => 'index'},{:class=>'menu'} %></td>
+          </tr>
+		  <tr>
+            <td width="25"><img src="/images/manager/close.gif" width="11" height="11" /></td>
+            <td width="135" height="26" align="left">
+            <%= link_to "新闻管理", {:controller => :article, :action => "index"},{:class=>'menu'} %></td>
+          </tr>
+		  <tr>
+            <td width="25"  style="vertical-align:top"><img src="/images/manager/close.gif" width="11" height="11" /></td>
+            <td width="135" height="26" align="left">
+            <%= link_to "类别管理", {:controller => :type, :action => "index"},{:class=>'menu'},:onclick=>"show()"%>
+			<div id="typeWaepper"></div>
+			</td>
+          </tr>
+          <tr>
+            <td width="25"><img src="/images/manager/close.gif" width="11" height="11" /></td>
+            <td width="135" height="26" align="left">
+            <%= link_to "友情链接", {:controller => 'friend_link', :action => 'index'},{:class=>'menu'} %> </td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+    <td valign="top"><br />
+    <%= yield :layout %>
+    </td>
+  </tr>
+  <tr>
+    <td width="253" valign="top"><img src="/images/manager/ht_12.jpg" width="253" height="36" /></td>
+    <td width="1047" valign="top">&nbsp;</td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+	dopage("cinemaWaepper","/cinema/list");
+	
+	new Ajax.Request("/type/list_all_type",{
+		method:'get',
+		asynchronous:true,
+		onComplete:function(obj){
+			$('typeWaepper').innerHTML=obj.responseText;
+		}
+	});
+	
+	function check_login(){
+		new Ajax.Request("/umeadmin/check_login_state", {
+			method: 'get',
+			asynchronous: true,
+			onComplete:function(obj){
+				var state=obj.responseText;
+				if (state == "false") {
+					alert("你半天都没的反应，不理你了....")
+					window.location.href = "/type";
+				}
+			}
+		});
+	}
+	setInterval(check_login,300000);
+
+	function show(){
+		a=$('typeWaepper').style.display;
+		if(a=="none"){
+			a="block";
+		}else{
+			a="none";
+		}
+	}
+	
+	/*
+	 * 菜单收展
+	 */
+	function mune(e){
+		var n=e.childNodes;
+		for(var i=0;i<n.length;n++){
+			n[i].className="none";
+		}
+	}
+	
+</script>
+
+</body>
+</html>

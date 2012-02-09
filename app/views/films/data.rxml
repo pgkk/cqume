@@ -1,0 +1,14 @@
+xml.instruct!
+xml.Movies(:name => @cinema.name.from(8),:tel => @cinema.phone) do
+  for f in @films do
+    name = f.name.sub(/[a-zA-Z]+/, '')
+    xml.Info(:name=>name,:date=>f.released_date.to_s.to(10),:image=>"/images/static-data_/"+f.img,:type=>f.category,:place=>f.country,:time=>f.duration) do
+      for m in @messages do
+        if m.film_id==f.id
+        xml.main(:id=>m.id,:time=>m.stime.to_s.from(5).to(10),:filmOffice=>m.room,:price=>get_price(m.price,m.service_price),:notes=>m.note)
+        end
+      end
+    end
+  end
+end
+

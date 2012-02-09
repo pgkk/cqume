@@ -1,0 +1,5 @@
+<ul>
+	<% for cinema in @cinemas%>	
+		<li> <%= link_to cinema.name, :controller => "message/list", :action => cinema.id %></li>
+	<%end%>
+</ul>

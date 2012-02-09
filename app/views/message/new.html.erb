@@ -1,0 +1,108 @@
+<h4 class="nav">发布影讯</h4>
+<%=error_messages_for "message" %>
+<% remote_form_for :message, :url => {:action => 'new'},
+    :before => "$(submitbox).innerHTML='<b margin-left:20px;>发布中，请稍候...</b>'",
+    :update => 'message_film_id',
+    :success => 'alert("发布成功，您可以继续发布！")',
+    :failure => 'alert("发布错误，本次操作未成功!")',
+    :complete => "$(submitbox).innerHTML='<input name=\"commit\" type=\"submit\" value=\"添加影讯\" />';$(message_film_id).onfocus=true" do |f| -%>
+<p class="row">
+  <label>选择影片：</label><%= f.collection_select('film_id', @online_films, :id,:name) %>
+</p>
+<%=f.hidden_field 'film_name' %>
+<%=f.hidden_field 'film_length' %>
+<%=f.hidden_field 'country' %>
+<%=f.hidden_field 'film_type' %>
+<p class="row">
+  <label>票价:</label>
+    <%=f.text_field 'price', :size => 10 %>
+    <span class="error"><%= @errors[:price] if @errors[:price] %></span>
+</p>
+<p class="row" style="display:none;">
+    <label> VIP服务费:</label>
+    <%=f.text_field 'service_price', :size => 10, :value => 0 %>
+    <span class="error"><%= @errors[:service_price] if @errors[:service_price] %></span>
+</p>
+<p class="row">
+  <label>放映厅:</label><%=f.text_field 'room',:size => 10 %> <span>例如：5厅，不用输入‘厅’字</span>
+</p>
+<p class="row">
+    <label>开演时间:</label>
+    <select id="days"  name="days">
+	<option value="<%= Date.today  %>"> 今天</option>
+	<option value="<%= Date.today.tomorrow  %>">明天</option>
+	<option value="<%= Date.today.tomorrow.tomorrow %>">后天</option>
+    </select>
+    <%=f.text_field 'stime' ,:size => 15%> 格式：17:30
+</p>
+<p class="row">
+    <label>语言：</label>
+    配音<input type="radio" name="language" value="配音版" checked="checked"/>
+    字幕<input type="radio" name="language" value="字幕版"  />
+    国产<input type="radio" name="language" value="none"  />
+</p>
+<p class="row">
+   <label>影讯备注:</label>
+  <%=f.text_field 'note' %>
+</p>
+<%=f.hidden_field 'cinema_id', :value => @cinema_id %>
+<p class="row" id="submitbox"><%=submit_tag '添加影讯' %></p>
+<% end %>
+
+<script type="text/javascript">
+    var prev_film_id = <%= flash[:prev_film_id] ? flash[:prev_film_id] : 'null' %>
+    function changeFilm(id){
+        new Ajax.Request('/film/ajaxload/' + id, {
+            method: 'GET',
+            evalJSON: true,
+            onSuccess: function(res){
+                var film = res.responseJSON.film
+              	//alert(film);
+                $('message_country').setValue(film.country);
+                $('message_film_length').setValue(film.duration)
+                $('message_film_type').setValue(film.category);
+
+				//alert(film);
+
+            },
+            onFialure: function(res){
+                //
+            }
+        })
+    }
+
+    $('message_film_id').observe('change', function(){
+        $('message_film_name').setValue(this.options[this.selectedIndex].text)
+        changeFilm($(this).value);
+    });
+
+	var succ_msg = "<%= flash[:message_flash] ? flash[:message_flash] : '' %>";
+    window.onload = function(){
+
+        var filmId = $('message_film_id').options[0].value;
+        $('message_film_name').setValue($('message_film_id').options[0].text);
+        if (filmId) {
+            changeFilm(filmId);
+        }
+
+		if (null != prev_film_id) {
+		id = parseInt(prev_film_id);
+		    var items = document.getElementById('message_film_id')
+			var opts = items.options;
+			for (var k = 0, len = opts.length; k < len; k++) {
+			    if (opts[k].value == prev_film_id) {
+					opts[k].selected = true;
+				}
+			}
+	    }
+
+        if (succ_msg) {
+            alert(succ_msg);
+        }
+    }
+
+
+
+
+
+</script>

@@ -1,0 +1,6 @@
+<table width="98%" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="#83c8ff">
+	<tr class="wz"><td  height="34" align="center" bgcolor="#052f55">分类</td></td>
+	<%for tmp in @list%>
+	<tr class='wz'><td align="center" bgcolor="#CBE6FF" height="34" style="color:black"><a href="javascript:getList('<%=h tmp.code-%>')"><%=h tmp.name%></a></td></tr>
+	<%end%>
+</table>

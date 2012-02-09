@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>UME<%=location%></title>
+    <link href="/stylesheets/show.css" rel="stylesheet" type="text/css" />
+    </script>
+  </head>
+  <body>
+    <table width="1002" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td height="500">
+          <table border="0" width="100%">
+            <tr>
+              <td width="140px" id="side-nav" align="right">
+              <%=navigate%>
+              </td>
+              <td align="left">
+                <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="FlashId" title="logo" width="100%" height="500px">
+                                    <param name="movie" value="/images/logo.swf" />
+                                    <param name="quality" value="high" />
+                                    <param name="wmode" value="Transparent" />
+                                    <param name="swfversion" value="9.0.45.0" />
+                                    <param name="expressinstall" value="/images/show/expressInstall.swf" />
+                                    <!--[if !IE]>-->
+                                    <object type="application/x-shockwave-flash" data="/images/logo.swf" width="100%" height="500px">
+                                        <!--<![endif]--><param name="quality" value="high" />
+                                        <param name="wmode" value="Transparent" />
+					<param name="swfversion" value="9.0.45.0" />
+                                        <param name="expressinstall" value="/images/show/expressInstall.swf" />
+                                        <div>
+                                            <h4>请安装最新版本的 Adobe Flash Player</h4>
+                                            <p>
+                                                <a href="http://www.adobe.com/go/getflashplayer">
+                                                <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt=" Adobe Flash Player" width="112" height="33" /></a>
+                                            </p>
+                                        </div>
+                                        <!--[if !IE]>-->
+                                        </object>
+                                    <!--<![endif]-->
+                                </object>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+
+          <table width="1002" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="33%">&nbsp;
+
+              </td>
+              <td width="33%">&nbsp;
+
+              </td>
+              <td width="33%">&nbsp;
+
+              </td>
+            </tr>
+
+            <% i = 1
+            while i <= @rows %>
+              <tr>
+                <% @messages_list.slice((i-1) * 3, 3).each do |message| %>
+                  <td>
+                    <table width="324" border="0" align="center" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td colspan="3" valign="bottom" background="/images/show/UME_03.gif" height="52">
+                          <div class="yytitle" style="background:url(/images/show/UME_03.png)">
+                            <%= message[:cinema].name %>
+                          </div>
+
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="14" background="/images/show/UME_05.gif">
+                        </td>
+                        <td width="296" valign="top">
+                          <table width="296" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td>
+
+                                <img src="/images/show/UME_06.gif" width="296" height="10" />
+                              </td>
+                            </tr>
+                            <tr>
+                              <td height="48" background="/images/show/UME_08.gif">
+                                <table width="290" border="0" align="center" cellpadding="0" cellspacing="0">
+                                  <tr>
+                                    <td width="51" align="center">
+                                      <img src="/images/show/UME1.jpg" width="35" height="34" />
+
+                                    </td>
+                                    <td width="239" style="line-height:22px;">
+                                      <div class="yy1">
+                                        明日影讯
+                                      </div>
+                                      <div class="wz">
+                                        <% if !message[:today].nil? %>
+                                          <%= message[:today].film_name %>
+                                          &nbsp;&nbsp;
+                                          <%= message[:today].stime.strftime('%H:%M:')%>
+                                          &nbsp;
+                                          <%= message[:today].price %>
+                                          &nbsp;
+                                          <%= message[:today].room %>
+                                        <% end %>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+
+                            </tr>
+                            <tr>
+                              <td>
+                                <img src="/images/show/UME_13.gif" width="296" height="11" />
+                              </td>
+                            </tr>
+                            <tr>
+                              <td height="48" background="/images/show/UME_14.gif">
+                                <table width="290" border="0" align="center" cellpadding="0" cellspacing="0">
+
+                                  <tr>
+                                    <td width="51" align="center">
+                                      <img src="/images/show/UME2.gif" width="36" height="35" />
+                                    </td>
+                                    <td width="239" style="line-height:22px;">
+                                      <div class="yy1">
+                                      今日影讯
+                                      </div>
+                                      <div class="wz">
+                                        <% if !message[:tomorow].nil? %>
+                                          <%= message[:tomorow].film_name %>
+                                          &nbsp;&nbsp;
+                                          <%= message[:tomorow].stime.strftime('%H:%M')%>
+                                          &nbsp;
+                                          <%= message[:tomorow].price %>
+                                          &nbsp;
+                                          <%= message[:tomorow].room %>
+                                        <% end %>
+                                      </div>
+
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <img src="/images/show/UME_13.gif" width="296" height="11" />
+                              </td>
+
+                            </tr>
+                            <tr>
+                              <td height="53" background="/images/show/UME_14.gif">
+                                <table width="290" border="0" align="center" cellpadding="0" cellspacing="0">
+                                  <tr>
+                                    <td width="51" align="center">
+                                      <img src="/images/show/UME3.gif" width="35" height="35" />
+                                    </td>
+                                    <td width="239" style="line-height:22px;">
+
+                                      <div class="yy1">
+                                        English
+                                      </div>
+                                      <div class="wz">
+                                        
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+
+                            </tr>
+                            <tr>
+                              <td height="4">
+                                <img src="/images/show/UME_22.gif" width="296" height="7" />
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td width="14" background="/images/show/UME_07.gif">&nbsp;
+
+
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="3">
+                          <img src="/images/show/UME_24.gif" width="324" height="12" />
+                        </td>
+                      </tr>
+                    </table>
+                  </td><% end %>
+              </tr>
+	<% 
+       i = i + 1
+            end %>
+          </table>
+
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

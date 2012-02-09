@@ -1,0 +1,83 @@
+<h4>修改影讯</h4>
+<%=error_messages_for "message" %>
+<% form_for :message do |f| %>
+<p class="row">
+    <label>
+        片名:
+    </label>
+    <%= f.collection_select('film_id', @films, :id, :name) %>
+    <!--
+    <% f.text_field 'film_name' %></p>
+    -->
+<%=f.hidden_field 'film_name' %>
+<%=f.hidden_field 'film_length' %>
+<%=f.hidden_field 'country' %>
+<%=f.hidden_field 'film_type' %>
+<p class="row" style="display:none">
+        <label>
+            国家:
+        </label>
+        <%=f.text_field 'country' %>
+    </p>
+    <p class="row" style="display:none">
+        <label>
+            类型:
+        </label>
+        <%=f.text_field 'film_type' %>
+    </p>
+    <p class="row">
+        <label>
+            放映厅:
+        </label>
+        <%=f.text_field 'room', :size=>10 %>
+    </p>
+    <p class="row">
+        <label>
+            票价:
+        </label>
+        <%=f.text_field 'price', :size => 10 %>
+    </p>
+    <p class="row" style="display:none;">
+        <label>
+            VIP服务费:
+        </label>
+        <%=f.text_field 'service_price', :size => 10 %>
+    </p>
+    <p class="row">
+        <label>
+            开演时间:
+        </label>
+  	<select id="days"  name="days">
+          <option value="<%= Date.today%>" <%if(Date.today==@md)%>selected<%end%>> 今天</option>
+		<option value="<%= Date.today.tomorrow%>" <%if(Date.today.tomorrow==@md)%>selected<%end%>>明天</option>
+		<option value="<%= Date.today.tomorrow.tomorrow %>" <%if(Date.today.tomorrow.tomorrow==@md)%>selected<%end%>>后天</option>
+	</select>
+    <%=f.text_field 'stime' ,:size => 15, :value => @st%>
+    </p>
+<p class="row">
+    <label>语言：</label>
+    配音<input type="radio" name="language" value="配音版" checked="checked"/>
+    字幕<input type="radio" name="language" value="字幕版"  />
+    国产<input type="radio" name="language" value="none"  />
+</p>
+    <p class="row">
+        <label>影讯备注:</label>
+        <%=f.text_field 'note' %>
+    </p>
+    <%=f.hidden_field 'cinema_id' %>
+    <p class="row">
+        <%=submit_tag '修改影讯' %>
+    </p>
+    <% end %>
+    <script type="text/javascript">
+        	var film_id = <%= @film_id  ? @film_id : 'null' %>;
+            var id = parseInt(film_id);
+        		    var items = document.getElementById('message_film_id')
+        			var opts = items.options;
+        			for (var k = 0, len = opts.length; k < len; k++) {
+        			    if (opts[k].value == id) {
+        					opts[k].selected = true;
+        				}
+        			}
+
+    </script>

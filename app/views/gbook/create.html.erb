@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>留言板</title>
+<%=stylesheet_link_tag "article_template1"%>
+</head>
+<body>
+<div id="bg">
+<div class="frame">
+<div id="head">
+<div id="head"><%=infoNavi%></div>
+</div>
+<div id="center">
+  <table>
+    <tr>
+      <td id="menu" rowspan="2">
+        <h1 style="margin-left:50px;color:#fff;">留言板</h1>
+		</td>
+      <td id="line"></td>
+      <td rowspan="2" id="main">
+
+<h4 style="color:#fff;">添加留言</h4>
+
+<% form_for @comment, :url => {:action => "createok", :id => @cinema_id} do |f| %>
+<h4 class="errorbox"><%=flash[:comment_flash]%></h4>
+
+  <p>
+    <%= f.label '标题' %><br />
+    <%= f.text_field :title ,:size => 60 %>
+  </p>
+  <p>
+    <%= f.label '内容' %><br />
+    <%= f.text_area :content, "cols" => 60, "rows" => 10 %>
+  </p>
+  <p>
+    <%= f.label '验证码' %>
+    <%= text_field_tag :vaild_code %>
+    <b><%=@code%></b>
+  </p>
+  <%= f.hidden_field :cinema_id, :value => @cinema_id %>
+  <p>
+    <%= f.submit '添加留言' %>
+  </p>
+<% end %>
+
+<%=link_to '察看留言', :action => 'show', :id => @cinema_id%>
+	 </td>
+    </tr>
+    <tr>
+      <td id="line2"></td>
+    </tr>
+  </table>
+</div>
+<div id="link" align="center"><%=link%></div>
+<div id="footer"></div>
+</div>
+</div>
+</body>
+</html>

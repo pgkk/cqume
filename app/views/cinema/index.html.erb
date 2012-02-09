@@ -1,0 +1,44 @@
+<div style="text-align:center;"><%=h flash[:msg] %></div>
+<div class="nav">
+<%=link_to '添加影院',:action=>'add'%>
+</div>
+ <table width="98%" class="list" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="#83c8ff">
+      <tr class="wz">
+        <td width="15%" height="34" align="center" bgcolor="#052f55">影院名称</td>
+        <td width="15%" align="center" bgcolor="#052f55">地址</td>
+        <td width="8%" align="center" bgcolor="#052f55">普通放映厅</td>
+        <td width="8%" align="center" bgcolor="#052f55">Vip放映厅</td>
+        <td width="8%" align="center" bgcolor="#052f55">情侣放映厅</td>
+        <td width="8%" align="center" bgcolor="#052f55">Imax放映厅</td>
+        <td width="12%" align="center" bgcolor="#052f55">联系电话</td>
+        <td width="12%" align="center" bgcolor="#052f55">简介</td>
+        <td width="8%" align="center" bgcolor="#052f55" colspan="2">操作</td>
+      </tr>
+  	<%for cinema in @cinemas%>
+      <tr>
+        <td height="30" align="center" bgcolor="#CBE6FF"><%=link_to (h cinema.name),:action=>"show",:id=>cinema %></td>
+        <td align="center" bgcolor="#CBE6FF"><%=h cinema.address %></td>
+		<td align="center" bgcolor="#CBE6FF"><%=h cinema.hall %>个</td>
+		<td align="center" bgcolor="#CBE6FF"><%=h cinema.viphall %>个</td>
+		<td align="center" bgcolor="#CBE6FF"><%=h cinema.loverhall %>个</td>
+		<td align="center" bgcolor="#CBE6FF"><%=h cinema.imaxhall %>个</td>
+		<td align="center" bgcolor="#CBE6FF"><%=h cinema.phone %></td>
+		<td align="center" bgcolor="#CBE6FF"><%=h cinema.info %></td>
+        <td align="center" bgcolor="#CBE6FF"><%=link_to '修改',:action=>"edit",:id=>cinema %> </td>
+        <td align="center" bgcolor="#CBE6FF"><%=link_to '删除',{:action=>"del",:id=>cinema},:confirm=>"真的要删除吗?",:method=>:post %> </td>
+      </tr>
+    <%end%>
+	 <tr>
+        <td height="30" align="center" bgcolor="#a4cef4">&nbsp;</td>
+        <td align="center" bgcolor="#a4cef4">&nbsp;</td>
+        <td align="center" bgcolor="#a4cef4">&nbsp;</td>
+        <td align="center" bgcolor="#a4cef4">&nbsp;</td>
+        <td align="center" bgcolor="#a4cef4">&nbsp;</td>
+        <td align="center" bgcolor="#a4cef4">&nbsp;</td>
+        <td align="center" bgcolor="#a4cef4">&nbsp;</td>
+        <td align="center" bgcolor="#a4cef4">&nbsp;</td>
+        <td align="center" bgcolor="#a4cef4">&nbsp;</td>
+		<td align="center" bgcolor="#a4cef4">&nbsp;</td>
+      </tr>
+     
+    </table>

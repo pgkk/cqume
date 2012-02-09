@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>您最喜欢的重庆UME影院是那一个？| UME在线调查</title>
+<%=stylesheet_link_tag "article_template1"%>
+<style type="text/css">
+	* {
+		margin:0;
+		padding:0;
+	}
+	
+	.line {
+		height: 23px;
+		border: #ddd;
+		width: 380px;
+		float: left;
+		margin-left: 20px;
+		z-index: 9999;
+		margin-bottom: 5px;
+	}
+	
+	
+	.voting_list_view {
+		width: 700px;
+		overflow: hidden;
+		padding: 10px 0;
+	}
+	
+	.line-wrap {
+		width: 680px;
+		clear: both;
+	}
+	
+	.inner-line {
+		
+		height: 23px;
+		float: left;
+		overflow: hidden;
+		z-index: 1;
+	}
+	
+	.vot-info {
+		width: 300px;
+	    float: left;
+	}
+	
+</style>
+</head>
+
+<body>
+<div id="bg">
+<div class="frame">
+<div id="head"><%=infoNavi%></div>
+<div id="center">
+  <table>
+    <tr>
+      <td id="menu" rowspan="2">
+        <h1 style="color:#fff;margin-left:50px;">在线调查</h1>
+      </td>
+      <td id="line"></td>
+      <td rowspan="2" id="main">
+        <h2 class="voting_title"><%= @voting_data[:voting][:name]%></h2>
+          <div class="voting_list_view">
+          	
+          	<% @voting_data[:options].each do |option| %>
+			<div class="line-wrap">
+			<span style="float:left;width:80px;color:#fff;display:block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= option.value %></span>	
+			<div class="line">
+			<div class="inner-line" style="background: <%= option.color %>;width:<%= option.counter == 0 ? 1 : (option.counter.to_f / @total * 100).to_i %>%"></div>
+			</div>
+			<span style="display:block;float:left;width:40px;"><%= option.counter %>票 </span>
+			
+			
+			<p  style="height: 2px;clear:both;"></p>
+			</div>
+			<% end %>
+			<p style="clear:both"></p>
+				<p style="margin-top: 5px;">
+			总共<%=@total %>人参与调查 &nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/voting/view/<%= @voting_data[:voting][:id] %>"></a>
+			<%= link_to "返回调查列表",  { :action => "index"}%>		
+			</p>
+          </div>
+        <!--样式文件在 /public/stylesheet/aritcle_template1.css 最下面-->
+      
+         <div id="view_but"></div>
+      </td>
+    </tr>
+    <tr>	
+      <td id="line2"></td>
+    </tr>
+  </table>
+</div>
+<!--<div id="navigate"></div>-->
+<div id="link" align="center">
+<%=link%>
+</div>
+<div id="footer"></div>
+</div>
+</div>
+</body>
+</html>

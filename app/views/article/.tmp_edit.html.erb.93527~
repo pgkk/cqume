@@ -1,0 +1,25 @@
+<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+<%=error_messages_for "article" %>
+<%form_for :article,:url=>{:action=>"edit"} do |f|%>
+<table>
+<tr><td>标题</td><td><%=f.text_field "title" %></td></tr>
+<tr><td>分类</td><td> <%=f.select "type_id", options_from_collection_for_select(@type, "id", "name")%> </td></tr>
+<tr><td>作者</td><td><%=f.text_field "author" %></td></tr>
+<tr><td>内容</td><td><%=f.text_area "content",:id=>"content" %></td></tr>
+<tr><td colspan="2">
+<%=submit_tag "保存",:confirm=>"确定修改吗？",:onclick=>"javascript:document.forms[0].action='/article/edit/" %>
+<%=submit_tag "预览",:onclick=>"javascript:document.forms[0].action='/article/preview';document.forms[0].target='_blank'" %> </td></tr>
+</table>
+<%=hidden_field_tag "t",params[:t]%>
+<%=hidden_field_tag "id",f.id%>
+
+<%end%>
+<script type="text/javascript">
+CKEDITOR.replace('content',{filebrowserUploadUrl:'/file_manage/uploadImage',filebrowserImageUploadUrl:'/file_manage/uploadImage'});
+s=$("article_type_id");
+for (var i = 0; i < s.options.length; i++) {
+	if (s.options[i].value == <%=@article.type_id%>) 
+		s.options[i].selected = true;
+}
+s.readonly=true;
+</script>

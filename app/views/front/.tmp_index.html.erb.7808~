@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UME<%=location%></title>
+<%=stylesheet_link_tag "ume.css"%>
+<%=javascript_include_tag "prototype-1.6.1.js"%>
+</head>
+
+<body>
+<div id="main">
+
+<ul id="index_nav">
+	<li id="logo"><img src="/images/index/logo.gif" alt="UME<%=location%>"/></li>
+	<li id="links"><a href="/classes/list/7"><img src="/images/index/button_news.gif" alt="UME<%=location%>" border="0"/></a><a href="/classes/list/4"><img src="/images/index/button_index.gif" alt="UME重庆" border="0"/></a></li>
+	<li id="telket">
+	<a href="http://preorder.bjume.com" title="会员购票"><img src="/images/index/telket_03.jpg" alt="UME会员服务"/></a><a href="http://www.wangpiao.com/" title="网票网购票"><img src="/images/index/telket_04.jpg" alt="UME网票网服务"/></a></li>
+</ul>
+
+<ul id="index_body">
+	<li id="cinema_list">
+		<ul>
+			<%for c in @cinema%>
+			<li class="off"><a href="#" onmousedown="view(<%=c.id%>,this)"><h1><%=c.name.from(8)%></h1><h4>WELCOME TO UME</h4></a></li>
+			<%end%>
+		</ul>
+	</li>
+	<li id="cinema_body">
+		<ul>
+			<li id="l"></li>
+			<li id="b">
+				<ul id="yinxun">
+					<li id="jr" ><a href="javascript:change('jryx');" class="a"><img id="tod" src="/images/index/yinxun_tod_on.jpg" border="0" alt="今日影讯"/></a></li>
+					<li id="mr"><a href="javascript:change('mryx');" class="a"><img id="tom" src="/images/index/yinxun_tom_off.jpg" border="0" alt="明日影讯"/></a></li>
+					<li id="bg"></li>
+				</ul>
+				<div id="bod">
+					
+				</div>
+			</li>
+			<li id="r"></li>
+		</ul>
+	</li>
+	<li id="cinema_right"></li>
+</ul>
+</div>
+
+<%=javascript_include_tag "front/init"%>
+</body>
+</html>

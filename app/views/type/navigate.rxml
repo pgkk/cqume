@@ -1,0 +1,29 @@
+xml.instruct!
+xml.News do
+  for o in @list
+    url = o.url
+    if url.blank?
+      url = "/classes/list/#{o.id}"
+    end
+    if o.code.length==4
+      xml.Part(:name=>o.name,:url=>url) do
+          if o.id==8
+            for c2 in @cinemas
+               xml.Main(:id=>c2.id,:name=>c2.name.from(8),:url=>"/films/hot?url=/films/data?c=#{c2.id}")
+            end
+          else
+           for c in @list
+             url = c.url
+              if url.blank?
+                 url = "/classes/list/#{o.id}"
+              end
+             if c.code.first(4)==o.code&&c.code!=o.code
+               xml.Main(:id=>c.id,:name=>c.name,:url=>url)
+             end
+            end
+          end
+
+        end
+    end
+  end
+end

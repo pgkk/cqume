@@ -1,0 +1,5 @@
+<% form_for 'data' do |form| %>
+<p class="row"><label>标题：</label><%= form.text_field :title, :value => h(@link.title),:class=>'input-box' %></p>
+<p class="row"><label>地址：</label><%= form.text_area  :url, :value => h(@link.url) , :class=>'input-box', :size => '45x5'%></p>
+<%= submit_tag "提交" %>
+<% end %>

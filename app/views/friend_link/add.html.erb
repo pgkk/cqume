@@ -1,0 +1,15 @@
+
+<% form_for 'data' do |form| %>
+<p class="row"><label>连接标题：</label>
+<%= form.text_field :title, :class=>'input-box' , :style => 'width: 300px' %>
+<% if !@errors['title'].nil?  %>
+  <span class="error"><%= @errors['title'] %> </span>
+<% end %>
+</p>
+<p class="row"><label>链接地址：</label><%= form.text_area :url, :class=>'input-box', :size => '40x5' %>
+  <% if !@errors['url'].nil?  %>
+  <span class="error"><%= @errors['url'] %> </span>
+  <% end %>
+</p>
+<p class="row" style="border: none"><%= submit_tag "添加" %></p>
+<% end %>

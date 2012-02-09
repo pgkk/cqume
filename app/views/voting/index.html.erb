@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UME在线调查</title>
+<%=stylesheet_link_tag "article_template1"%>
+</head>
+
+<body>
+<div id="bg">
+<div class="frame">
+<div id="head">
+<%=infoNavi%>	
+</div>
+<div id="center">
+  <table>
+    <tr>
+      <td id="menu" rowspan="2">
+        <h1 style="color:#fff;margin-left:50px;">在线调查</h1>
+      </td>
+      <td id="line"></td>
+      <td rowspan="2" id="main">
+        <h2 class="voting_title">您的意见对我们很重要！</h2>
+        <ul id="voting_list">
+        
+		  <% @votings.each do |voting| %>
+		  <li><a href="/voting/do_voting/<%= voting.id %>" /><%= voting.name %> (<%= voting.cat ? '多选' : '单选' %>)</a></li>
+		  <% end %>
+          <!--这里可以不要分页，一页把所有调查都打印出来，应该没有多少调查，以前的调查可以删除，并且级联
+           删除所有投票选项，这个在父类模型中用一个关键字表示，查查书关系那张-->
+          <!--
+          Rails在关联关系中，han_one和has_many都有一个:dependent选项，告诉ActiveRecord在删除父记录时该如何处理子记录，它有五个属性(AWDWR)：
+            :dependent => :destroy(或true) --- 删除父记录的同时删除子表中的记录
+          -->
+          <!--注意删除的时候让用户确认下-->
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td id="line2"></td>
+    </tr>
+  </table>
+</div>
+<!--<div id="navigate"></div>-->
+<div id="link" align="center"><%=link%></div>
+<div id="footer"></div>
+</div>
+</div>
+</body>
+</html>

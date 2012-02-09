@@ -1,0 +1,14 @@
+<div id="parent_tree" style="margin-left:10px;width:100px;float:left;padding:10px;">
+</div>
+<div id="child_tree" style="margin-left:20px;width:600px;float:left;padding:10px;">
+</div>
+<div id="type_info" style="margin-left:20px;width:100px;float:left;padding:10px;">
+</div>
+<script>
+		function getList(code){
+			new Ajax.Updater('child_tree', '/type/list/'+code,{method:'get'});
+			new Ajax.Updater('type_info', '/type/view/'+code,{method:'get'});
+		}
+		
+		new Ajax.Updater('parent_tree', '/type/list',{method:'get'});
+</script>

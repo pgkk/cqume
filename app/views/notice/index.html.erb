@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UME中长期预告</title>
+<%=stylesheet_link_tag "article_template1"%>
+<style type="text/css">
+	.space {
+		margin-top: 15px;
+		margin-bottom: 500px;
+	}
+	
+	
+</style>
+<script type="text/javascript">
+function change(obj1,obj2)
+{
+	document.getElementById(obj1).src="/images/notice/"+obj1+"0.jpg";
+	document.getElementById(obj2).src="/images/notice/"+obj2+".jpg";
+	document.getElementById(obj2+"y").style.display='';
+	document.getElementById(obj1+"y").style.display='none';
+	}
+</script>
+</head>
+  
+<body>
+<div id="bg">
+<div class="frame">
+<div id="head">
+  <%=infoNavi%>
+</div>
+<div id="center">
+  <table style="width: 92%" style="margin:0 auto" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="121"><img src="/images/notice/bysy0.jpg" name="bysy" width="129" height="48" id="bysy" onclick="change('bysy','cqyg');" style="cursor:pointer;"/></td>
+    <td width="128"><img src="/images/notice/cqyg.jpg" width="128" height="48" id="cqyg" onclick="change('cqyg','bysy');" style="cursor:pointer;"/></td>
+    <td width="677" background="/images/notice/UMEi_05.jpg">&nbsp;</td>
+    <td width="10" background="/images/notice/UMEi_05.jpg"><img src="/images/notice/UMEi_07.jpg" width="10" height="48" /></td>
+  </tr>
+  <tr>
+    <td  colspan="4" style="background: url(/images/notice/UMEi_09.jpg)" >
+
+    <table class="space"  align="center" cellpadding="1" cellspacing="1" id="bysyy" bgcolor="#83c8ff" style="display:none;width:96%">
+      
+	  <tr class="wz">
+        <td width="24%" height="34" align="center" bgcolor="#052f55"><span style="color:#FFF">片名</span></td>
+        <td width="11%" align="center" bgcolor="#052f55"><span style="color:#FFF">片长(分)</span></td>
+        <td width="10%" align="center" bgcolor="#052f55"><span style="color:#FFF">产地</span></td>
+        <td width="20%" align="center" bgcolor="#052f55"><span style="color:#FFF">上映日期</span></td>
+        <td width="35%" align="center" bgcolor="#052f55"><span style="color:#FFF">备注</span></td>
+      </tr>
+	  
+	  
+	  <%
+	  t_counter = 0
+      @later_month_films.each do |later_film|
+      if t_counter % 2 == 0
+       %>
+		<tr>
+        <td height="30" align="center" bgcolor="#CBE6FF"><%= later_film.name %></td>
+        <td align="center" bgcolor="#CBE6FF"><%= later_film.duration%></td>
+     
+        <td align="center" bgcolor="#CBE6FF"><%= later_film.country%></td>
+		   <td align="center" bgcolor="#CBE6FF"><%= later_film.released_date.strftime('%Y-%m-%d')%></td>
+        <td align="center" bgcolor="#CBE6FF"><%= later_film.description%></td>
+      </tr>
+		<% else %>
+		<tr>
+        <td height="30" align="center" bgcolor="#a4cef4"><%= later_film.name%></td>
+        <td align="center" bgcolor="#a4cef4"><%= later_film.duration %></td>
+        <td align="center" bgcolor="#a4cef4"><%= later_film.country%></td>
+        <td align="center" bgcolor="#a4cef4"><%= later_film.released_date.strftime('%Y-%m-%d')%></td>
+        <td align="center" bgcolor="#a4cef4"><%= later_film.description%></td>
+      </tr>
+		
+		<%
+		end
+        t_counter = t_counter + 1 
+        end
+     %>      
+    </table>
+	
+    <table  class="space"  style="width:96%" align="center" cellpadding="1" cellspacing="1" bgcolor="#83c8ff" id="cqygy">
+      <tr class="wz">
+       <td width="24%" height="34" align="center" bgcolor="#052f55"><span style="color:#FFF">片名</span></td>
+        <td width="11%" align="center" bgcolor="#052f55"><span style="color:#FFF">片长(分)</span></td>
+        <td width="10%" align="center" bgcolor="#052f55"><span style="color:#FFF">产地</span></td>
+        <td width="20%" align="center" bgcolor="#052f55"><span style="color:#FFF">上映日期</span></td>
+        <td width="35%" align="center" bgcolor="#052f55"><span style="color:#FFF">备注</span></td>
+      </tr>
+	  <%
+	  counter = 0 
+      @current_month_films.each do |current_month_film|
+             if counter % 2 == 0
+      %>
+   <tr>
+        <td height="30" align="center" bgcolor="#CBE6FF"><%=current_month_film.name%></td>
+        <td align="center" bgcolor="#CBE6FF"><%= current_month_film.duration%></td>
+        <td align="center" bgcolor="#CBE6FF"><%= current_month_film.country%></td>
+        <td align="center" bgcolor="#CBE6FF"><%= current_month_film.released_date.strftime('%Y-%m-%d') %></td>
+        <td align="center" bgcolor="#CBE6FF"><%= current_month_film.description%></td>
+      </tr>
+	  
+   <%
+   else
+   %>
+<tr>
+        <td height="30" align="center" bgcolor="#a4cef4"><%=current_month_film.name%></td>
+        <td align="center" bgcolor="#a4cef4"><%= current_month_film.duration%></td>
+        <td align="center" bgcolor="#a4cef4"><%= current_month_film.country%></td>
+        <td align="center" bgcolor="#a4cef4"><%= current_month_film.released_date.strftime('%Y-%m-%d') %></td>
+        <td align="center" bgcolor="#a4cef4"><%= current_month_film.description%></td>
+</tr>
+<%
+end
+counter = counter + 1 
+end
+%>
+      
+    </table></td>
+  </tr>
+  <tr>
+    <td colspan="4" style=""><img src="/images/notice/UMEi_11.jpg" height="21" /></td>
+  </tr>
+</table>
+</div>
+<div id="link"><%=link%></div>
+<div id="footer"></div>
+</div>
+</div>
+</body>
+</html>

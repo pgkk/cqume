@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>您最喜欢的重庆UME影院是那一个？| UME在线调查</title>
+<%=stylesheet_link_tag "article_template1"%>
+<style type="text/css">
+	li {
+		list-style: none;
+		margin-bottom: 5px;
+	}
+	
+</style>
+</head>
+
+<body>
+	
+<div id="bg">
+<div class="frame">
+<div id="head">
+<%=infoNavi%>
+</div>
+<div id="center">
+  <table>
+    <tr>
+      <td id="menu" rowspan="2">
+        <h1 style="color:#fff;margin-left:50px;">在线调查</h1>
+      </td>
+      <td id="line"></td>
+      <td rowspan="2" id="main">
+        <h2 class="voting_title"><%= @voting_data[:voting].name %></h2>
+		
+		<% form_for 'voting_form' do |form| %>
+		<% if @voting_data[:voting].cat == true %>
+		    <% @voting_data[:options].each do |option| %>
+			<li><%= check_box_tag 'val[]', option.id %> <%= option.value %> </li>
+			<% end %>
+		<% else %>
+		    <% @voting_data[:options].each do |option| %>
+			<li><%= form.radio_button 'val', option.id %> <%= option.value %> </li>
+			<% end %>
+		<% end %>
+		<p><%=submit_tag '立即投票'%> &nbsp;&nbsp; <%= link_to '查看结果', :action => 'view', :id => @voting_data[:voting]%></p>
+		<% end %>
+		
+      </td>
+    </tr>
+    <tr>
+      <td id="line2"></td>
+    </tr>
+  </table>
+</div>
+<!--<div id="navigate"></div>-->
+<div id="link" align="center">
+<%=link%>
+</div>
+<div id="footer"></div>
+</div>
+</div>
+</body>
+</html>

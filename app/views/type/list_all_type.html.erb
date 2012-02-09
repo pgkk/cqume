@@ -1,0 +1,7 @@
+<ul style="padding:0px;margin:0px 3px">
+	<% for type in @list%>	
+		<li  style="margin:4px;">
+		<%(type.code.length/4-1).times do%>&nbsp;<%end%>
+		-<%= link_to_if type.isMenu,type.name, :controller => "type", :action => "list_news",:id=>type %></li>
+	<%end%>
+</ul>

@@ -1,0 +1,66 @@
+<%= javascript_include_tag 'prototype-1.6.1' %>
+<style>
+input{width:140px;}
+#category{padding:0;margin:0;list-style:none;font-size:small;}
+#category li{line-height:20px;}
+#category li a{font-size:small;}
+#addbox{padding:10px 0;font-size:small;}
+* html #addbox{font-size:14px;}
+* html #category li a{font-size:14px;}
+#ncode{padding:5px;background:#e3e3e3;color:green;margin-bottom:15px;text-align:center;font-size:small}
+</style>
+
+<a name="top"></a>
+
+<% form_remote_tag :url => {:action => 'add'},:complete => 'document.location.reload()' do -%>
+<table id="addbox" style="display:none">
+  <tr><td>类别ID</td><td id="code_field"><%=text_field 'category','code'%>
+   <a href="#" onclick="$(addbox).hide()">关闭</a></td></tr>
+  <tr><td>类别名字</td><td><%=text_field 'category','name'%>
+  <tr><td>URL</td><td><%=text_field 'category','url'%>
+  <tr><td>&nbsp;</td><td><%=submit_tag '添加'%></td></tr>
+</table>
+<% end -%>
+
+<div id="ncode" style="display:none">正在计算下一个ID...稍候</div>
+
+<div id="cbox">
+<div id="result_box"></div>
+<ul id="category">
+  <% if @list.size == 0 %>
+    <li>
+      <a href="#top" onclick="$('addbox').show();$('category_code').value='1000'">添加一级目录</a>
+    </li>
+  <% else %>
+    <% for c in @list do code = c.code%>
+      <li style="margin-left:<%=(code.to_s.size-4)*4%>px;" id="<%=h code%>">
+      <%=link_to (h c.name),{:action => 'news', :id => code, :name => c.name },{:target => 'right'}%>
+      <%=link_to_remote '[兄]', :url => {:action => 'brother', :id => code},
+         :before => "$(ncode).show();",
+         :update => "code_field",
+         :success => "$(addbox).show();$(category_name)=$(category_url)='';",
+         :failure => "alert('失败!')",
+         :complete => "$(ncode).hide()" %>
+      <%=link_to_remote '[子]', :url => {:action => 'child', :id => code},
+         :before => "$(ncode).show();",
+         :update => "code_field",
+         :success => "$(addbox).show();$(category_name).value=$(category_url).value=''",
+         :failure => "alert('失败!')",
+         :complete => "$(ncode).hide()" %>
+      <%=link_to_remote '[改]', :url => {:action => 'show', :id => code},
+         :before => "$(ncode).innerHTML='正在修改请稍候...';$(ncode).show()",
+         :update => 'addbox',
+         :success => "$(addbox).show()",
+         :failure => "alert('失败，请重试！')",
+         :complete => "$(ncode).hide()" %>
+      <%=link_to_remote '[删]', :url => {:action => 'remove', :id => code},
+         :confirm => '确定删除该目录，这样它下面的所有子目录也将同时删除？',
+         :before => "$(ncode).innerHTML='正在删除...';$(ncode).show()",
+         :failure => "alert('删除失败')",
+         :success => "document.location.reload()",
+         :complete => "$(ncode).hide()" %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+</div>

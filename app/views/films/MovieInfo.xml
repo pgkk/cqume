@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Info name="玫瑰的战争" date="2010-10-20" image="http://localhost:3000/images/static-data_/20100913014507_758424.jpg?1284313507" type="爱情片" place="美国" time="132分钟">
+  <main id="1" time="9:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="2" time="10:10" filmOffice="11号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="3" time="11:10" filmOffice="12号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="4" time="12:10" filmOffice="13号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="5" time="13:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="6" time="14:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="7" time="15:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="8" time="16:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="9" time="17:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="10" time="18:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="11" time="19:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="12" time="20:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="13" time="21:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="14" time="22:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="15" time="23:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="16" time="24:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="17" time="0:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="18" time="1:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="19" time="23:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="20" time="24:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="21" time="0:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+  <main id="22" time="1:10" filmOffice="10号厅" price="50元" notes="10号厅有50个位置" />
+</Info>

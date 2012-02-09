@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UME<%=location%>-<%=@article.title%></title>
+<%=stylesheet_link_tag 'temp' %>
+<script type="text/javascript">
+/*function change(obj1,obj2,obj3){
+	document.getElementById(obj1).src="/images/temp/"+obj1+".jpg";
+	document.getElementById(obj2).src="/images/temp/"+obj2+".gif";
+	document.getElementById(obj3).src="/images/temp/"+obj3+".gif";
+        
+        
+	if(obj1=="jryx"){
+		document.getElementById("today").style.display="inline-table";
+		document.getElementById("tomorow").style.display="none";
+                document.getElementById("news").style.display="none";
+	}else if(obj1=="mryx"){
+                document.getElementById("today").style.display="none";
+		document.getElementById("tomorow").style.display="inline-table";
+                document.getElementById("news").style.display="none";
+	}else{
+                document.getElementById("tomorow").style.display="none";
+		document.getElementById("news").style.display="inline-table";
+                document.getElementById("today").style.display="none";
+        }
+}*/
+</script>
+</head>
+
+<body>
+<table width="967" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="204"><img src="/images/temp/logo.gif" width="204" height="79" /></td>
+    <td width="129"><%= link_to image_tag("/images/temp/u03.gif"),"http://www.cqume.com/info/listinfo.dll?infoid=160", :target=>"blank"%></td>
+    <td width="124"><%= link_to image_tag("/images/temp/u04.gif"),"http://www.cqume.com", :target=>"blank"%></td>
+    <td width="433"></td>
+    <td width="38"><%= link_to image_tag("/images/temp/u06.gif"),"http://preorder.bjume.com/", :target=>"blank"%></td>
+    <td width="39"><%= link_to image_tag("/images/temp/u07.gif"),"http://www.wangpiao.com/", :target=>"blank"%></td>
+  </tr>
+</table>
+
+
+<table width="967" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td colspan="3"><img src="/images/temp/u09.gif" width="967" height="32" /></td>
+  </tr>
+  <tr>
+    <td colspan="3" valign="top"><table width="967" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="39"><img src="/images/temp/u10.gif" width="39" height="52" /></td>
+        <td width="197"><img src="/images/temp/ycjs.jpg" width="197" height="52" id="ycjs" onclick="change('ycjs','mryx','jryx');"/></td>
+        <td width="197" style="background:url(/images/temp/u13.gif)"><!--<img src="/images/temp/jryx.gif" width="197" height="52" id="jryx" onclick="change('jryx','mryx','ycjs');"/>--></td>
+        <td width="502" style="background:url(/images/temp/u13.gif)">
+          <!--<img src="/images/temp/mryx.gif" width="197" height="52" id="mryx" onclick="change('mryx','jryx','ycjs');"/>--></td>
+        <td width="32"><img src="/images/temp/u14.gif" width="32" height="52" /></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top" background="/images/temp/u19.gif">&nbsp;</td>
+    <td width="861" height="700" valign="top" bgcolor="#0160B2">
+    	
+	
+	<div id="news">
+   <h1 style="text-align:center;"><%=h @article.title%></h1>
+   <span style="text-align:center;color:#ccc">作者：<%=h @article.author%> ｜ 发布时间 ：<%=Time.now.to_s(:db)%></span>
+	<%=@article.content%>
+	</div>
+    </td>
+    <td width="53" background="/images/temp/u21.gif"></td>
+  </tr>
+  <tr>
+    <td colspan="3"><img src="/images/temp/u24.jpg" width="967" height="66" />
+      <div align="center" style="padding:10px">
+        重庆优觅电影有限公司
+        <a href="http://www.miibeian.gov.cn">渝ICP备10200679号-1</a>
+        重庆UME国际影城
+        <a href="http://www.cqume.com">www.cqume.com</a></div>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

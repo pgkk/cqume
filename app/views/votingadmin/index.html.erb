@@ -1,0 +1,26 @@
+<style type="text/css">
+	#voting td {
+		color: #000;
+			padding: 10px 0;
+	}
+	
+</style>
+<p style="width:98%;margin:0 auto;padding: 5px 0">
+	<% if flash[:success_msg] %>
+	    <%= flash[:success_msg]%>
+	<% end %>
+</p>
+    <p style="width:98%" style="margin: 0 auto;padding: 8px 0">
+    	<%= link_to "添加", :action => 'add' %>
+    </p>
+	<table width="98%" id="voting" class="list" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="#83c8ff" style="text-align:center">
+  <tr class="wz" bgcolor="#052f55">
+  <td style="color:#FFF">主题</td><td style="color:#FFF">操作</td>	</tr>
+	<% @votings.each do |voting| %>
+	<tr class="wz" bgcolor="#cbe6ff"><td><%= link_to voting.name, :controller => 'voting', :action => 'view', :id => voting %></td><td>
+		<%= link_to "删除", :action => 'delete', :id => voting %>
+		<%= link_to "编辑", :action => 'edit', :id => voting %>
+		<%= link_to "数据清零", :action => 'clear', :id => voting%>
+	</td></tr>
+	<% end %>
+</table>

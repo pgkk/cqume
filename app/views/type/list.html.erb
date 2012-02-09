@@ -1,0 +1,23 @@
+<table width="98%" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="#83c8ff">
+	<tr class="wz">
+	<td height="34" align="center" bgcolor="#052f55">code</td>
+	<td height="34" align="center" bgcolor="#052f55">类别名称</td>
+	<td height="34" align="center" bgcolor="#052f55">是否为菜单项</td>
+	<td height="34" align="center" bgcolor="#052f55">说明</td>
+	<td height="34" align="center" bgcolor="#052f55">操作</td>
+	</tr>
+	<%for tmp in @list %>
+	<tr>
+	<td  align="left" bgcolor="#CBE6FF" height="30px" width="10%"><%=tmp.code%></td>
+	<td  align="center" bgcolor="#CBE6FF" width="20%"><%=tmp.name%></td>
+	<td  align="center" bgcolor="#CBE6FF" width="10%"><%=tmp.isMenu%></td>
+	<td  align="center" bgcolor="#CBE6FF" width="40%"><%=tmp.info%></td>
+	<td  align="center" bgcolor="#CBE6FF" width="20%">
+		<%=link_to "添加同级",:action=>"add",:id=>tmp.code,:method=>"same" %> |
+		<%=link_to "添加子级",:action=>"add",:id=>tmp.code,:method=>"child" %> |
+		 <%=link_to "修改",:action=>"edit",:id=>tmp %> | 
+	 	<%=link_to "删除",{:action=>"delete",:id=>tmp},:confirm=>"确定删除？",:method=>"post"%>
+ 	</td>
+	</tr>
+	<%end%>
+</table>

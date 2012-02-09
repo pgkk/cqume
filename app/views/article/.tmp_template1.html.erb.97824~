@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新闻查看</title>
+<%=stylesheet_link_tag "article_template1"%>
+</head>
+<body>
+<div id="bg">
+<div class="frame">
+<div id="head">
+  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="1040" height="200">
+    <param name="movie" value="images/infoNavi.swf" />
+    <param name="quality" value="high" />
+    <embed src="/images/articles/infoNavi.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="1040" height="200"></embed>
+  </object>
+</div>
+<div id="center">
+  <table>
+    <tr>
+      <td id="menu" rowspan="2">
+      	<%unless @typelist.nil?&&@typelist.size!=0%>
+		<h2><%=link_to @typelist[0].name%></h2>
+        <ul>
+        	<%for t in @typelist%>
+          	<li><%=link_to t.name%></li>
+		  <%end%>
+        </ul>
+		<%end%>
+		</td>
+      <td id="line"></td>
+      <td rowspan="2" id="main">
+      	<span class="navigate"><%=@article.type.name%> &gt; 正文</span>
+		 <span class="title"><%=h @article.title%></span>
+ 			<span class="info">作者：<%=h @article.author%> ｜ 发布时间 ：<%=Time.now.to_s(:db)%></span>
+			<%=@article.content%>
+	 </td>
+    </tr>
+    <tr>
+      <td id="line2"></td>
+    </tr>
+  </table>
+</div>
+<div id="navigate"></div>
+<div id="footer"></div>
+</div>
+</div>
+</body>
+</html>
